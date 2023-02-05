@@ -1,0 +1,23 @@
+{
+  "name": "mango-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DimOps/mango-scraping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DimOps/mango-scraping/issues"
+  },
+  "homepage": "https://github.com/DimOps/mango-scraping#readme",
+  "dependencies": {
+    "puppeteer": "^19.6.3"
+  }
+}
