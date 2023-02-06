@@ -27,6 +27,19 @@ async function extract() {
 
     await page.screenshot({path: 'asksToSubscribe.png'});
 
+    // discard subscription
+    const subscription = await page.waitForSelector('#newsletterSubscriptionModal > div > button', {timeout: 3000} );
+    await subscription.click();
+    await subscription.dispose();
+
+    await page.screenshot({path: "cleanContentView.png", fullPage: true});
+
+    // selects size
+    await page.click("#sizesContainer > div > ul > li:nth-child(3) > button");
+
+    await page.screenshot({path: "asksForContacts.png"});
+
+
     browser.close();
 }
 
