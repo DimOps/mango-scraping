@@ -46,7 +46,16 @@ async function extract() {
 
     await page.screenshot({path: "readyToExtract.png"});
 
-    
+    const productData = await page.evaluate(() =>{
+        itemName = document.querySelector('#productDesktop > main > div > div.product-actions > div.product-features-prices > div > h1').textContent;
+        itemPrice = document.querySelector('#productDesktop > main > div > div.product-actions > div.product-features-prices > span > div > span.Bc91B > span > span').textContent;
+        ItemColor = document.querySelector('#productDesktop > main > div > div.product-actions > div.product-colors > div.colors-info > span').textContent;
+        itemSize = document.querySelector('#size-21').textContent;
+
+        return [itemName, itemPrice, ItemColor, itemSize]
+    });
+
+    console.log(productData)
     browser.close();
 }
 
