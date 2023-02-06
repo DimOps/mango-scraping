@@ -2,8 +2,12 @@ import puppeteer from "puppeteer";
 
 async function extract() {
     
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: false,
+        slowMo: 400,
+    });
     const page = await browser.newPage();
+    await page.setViewport({ width: 1600, height: 1000 });
     await page.goto('https://shop.mango.com/gb/women/skirts-midi/midi-satin-skirt_17042020.html?c=99');
 
     await page.screenshot({path: 'asksForCookies.png'});
@@ -13,7 +17,7 @@ async function extract() {
     await cookieNotification.click();
     await cookieNotification.dispose();
 
-    await delay(3000);
+    
     await page.screenshot({path: 'asksForLang.png'});
 
     // Sets language option
@@ -21,16 +25,9 @@ async function extract() {
     await lang.click();
     await lang.dispose();
 
-    await page.screenshot({path: 'asksForEmpty.png'});
-    
-    
+    await page.screenshot({path: 'asksToSubscribe.png'});
+
     browser.close();
 }
-
-function delay(time) {
-    return new Promise(function(resolve) { 
-        setTimeout(resolve, time)
-    });
- }
 
 extract();
