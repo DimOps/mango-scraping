@@ -39,7 +39,14 @@ async function extract() {
 
     await page.screenshot({path: "asksForContacts.png"});
 
+    // discard out-of-stock notification form
+    const soldoutNote = await page.waitForSelector('body > div.eTS0l > div > div.cvlYZ > button', {timeout: 3000} );
+    await soldoutNote.click();
+    await soldoutNote.dispose();
 
+    await page.screenshot({path: "readyToExtract.png"});
+
+    
     browser.close();
 }
 
