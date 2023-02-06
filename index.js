@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
+const fs = require('fs/promises');
 
 async function extract() {
     
@@ -56,6 +57,12 @@ async function extract() {
     });
 
     browser.close();
+    load(productData);
+}
+
+async function load (data) {
+    let obj = transform(data);
+    await fs.writeFile("clothes.json", obj);
 }
 
 function transform (data) {
