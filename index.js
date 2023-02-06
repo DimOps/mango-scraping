@@ -55,8 +55,21 @@ async function extract() {
         return [itemName, itemPrice, ItemColor, itemSize]
     });
 
-    console.log(productData)
     browser.close();
+}
+
+function transform (data) {
+    let pricing = data[1].split(' ').reverse();
+
+    let obj = {
+        "name":data[0],
+        "price": pricing.join(' '),
+        "color": data[2],
+        "size": data[3],
+    }
+
+    let item = JSON.stringify(obj);
+    return item;
 }
 
 extract();
